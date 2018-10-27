@@ -57,7 +57,7 @@ public class VarastoTest {
     @Test
     public void konstruktoriAsettaaSaldonNollaanJosNegatiivinen() {
         varasto = new Varasto(10, -3);
-        assertEquals(1, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
