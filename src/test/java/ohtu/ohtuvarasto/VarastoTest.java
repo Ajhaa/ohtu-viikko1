@@ -31,6 +31,42 @@ public class VarastoTest {
     }
 
     @Test
+    public void konstruktoriLuoTyhjänJosNegatiivinenTilavuus() {
+        varasto = new Varasto(-2);
+        assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void kuormitettuKonstruktoriLuoOikeanTilavuuden() {
+        varasto = new Varasto(10, 0);
+        assertEquals(10, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void kuormitettuKonstruktoriAsettaaOikeanAlkusaldon() {
+        varasto = new Varasto(10, 5);
+        assertEquals(5, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void kuormitettuKonstruktoriLuoTyhjanJosNegatiivinenTilavuus() {
+        varasto = new Varasto(-2, 5);
+        assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void konstruktoriAsettaaSaldonNollaanJosNegatiivinen() {
+        varasto = new Varasto(10, -3);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void konstruktoriTayttaaVarastonJosAlkusaldoSuurempiKuinTilavuus() {
+        varasto = new Varasto(10, 20);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
     public void lisaysLisaaSaldoa() {
         varasto.lisaaVarastoon(8);
 
@@ -65,4 +101,40 @@ public class VarastoTest {
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
 
+    @Test
+    public void negatiivinenOttaminenEiMuutaTilaa() {
+        varasto.lisaaVarastoon(8);
+        varasto.otaVarastosta(-2);
+        assertEquals(2, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void liikaaOttaminenOttaaKaiken() {
+        varasto.lisaaVarastoon(4);
+        double otettu = varasto.otaVarastosta(8);
+
+        assertEquals(4, otettu, vertailuTarkkuus);
+    }
+
+    @Test
+    public void negatiivinenLisääminenEiMuutaTilaa() {
+        varasto.lisaaVarastoon(5);
+        varasto.lisaaVarastoon(-2);
+
+        assertEquals(5, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void liikaLisääminenTäyttääTäyteen() {
+        varasto.lisaaVarastoon(21);
+
+        assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toStringTulostaaOikein() {
+        String tostring = varasto.toString();
+        String expected = "saldo = " + varasto.getSaldo() + ", vielä tilaa " + varasto.paljonkoMahtuu();
+        assertEquals(expected, tostring);
+    }
 }

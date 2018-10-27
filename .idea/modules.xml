@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ohtuvarasto.iml" filepath="$PROJECT_DIR$/.idea/modules/ohtuvarasto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ohtuvarasto_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ohtuvarasto_main.iml" group="ohtuvarasto" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ohtuvarasto_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ohtuvarasto_test.iml" group="ohtuvarasto" />
+    </modules>
+  </component>
+</project>
