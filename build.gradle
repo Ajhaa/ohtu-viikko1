@@ -35,6 +35,13 @@ jar {
     }
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
 // Define the main class for the application
 mainClassName = 'ohtu.ohtuvarasto.Main'
 
