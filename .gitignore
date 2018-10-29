@@ -1,3 +1,4 @@
 *.tmp
 **/build
 gradle.properties
+/viiko2_gradle/.nb-gradle/
