@@ -9,7 +9,9 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-apply plugin: "jacoco"
+apply plugin: 'jacoco'
+
+apply plugin: 'checkstyle'
 
 // Apply the application plugin to add support for building an application
 apply plugin: 'application'

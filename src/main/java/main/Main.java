@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Varasto mehua = new Varasto(100.0);
+       /* Varasto mehua = new Varasto(100.0);
         Varasto olutta = new Varasto(100.0, 20.2);
 
         System.out.println("Luonnin jälkeen:");
@@ -55,6 +55,6 @@ public class Main {
         System.out.println("mehua.otaVarastosta(-32.9)");
         saatiin = mehua.otaVarastosta(-32.9);
         System.out.println("saatiin " + saatiin);
-        System.out.println("Mehuvarasto: " + mehua);
+        System.out.println("Mehuvarasto: " + mehua); */
     }
 }

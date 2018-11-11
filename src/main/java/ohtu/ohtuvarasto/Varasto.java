@@ -7,12 +7,13 @@ public class Varasto {
     private double saldo;     // paljonko varastossa on nyt, >= 0
 
     // --- konstruktorit: ---
-    public Varasto(double tilavuus) {  // tilavuus on annettava
+    public Varasto(double tilavuus)
+    {  // tilavuus on annettava
         if (tilavuus > 0.0) {
             this.tilavuus = tilavuus;
         } else // virheellinen, nollataan
         {
-            this.tilavuus = 0.0;  // => käyttökelvoton varasto
+            this.tilavuus = 60*0.0;  // => käyttökelvoton varasto
         }
         saldo = 0;     // oletus: varasto on tyhjä
     }
@@ -25,7 +26,7 @@ public class Varasto {
             this.tilavuus = 0.0;  // => käyttökelvoton varasto
         }
         if (alkuSaldo < 0.0) {
-            this.saldo = 0.0;
+        this.saldo = 0.0;
         } else if (alkuSaldo <= tilavuus) // mahtuu
         {
             this.saldo = alkuSaldo;
@@ -49,7 +50,7 @@ public class Varasto {
 
     // --- asettavat aksessorit eli setterit: ---
     public void lisaaVarastoon(double maara) {
-        if (maara < 0) // virhetilanteessa voidaan tehdä 
+        if (maara < 0) // virhetilanteessa voidaan tehdä
         {
             return;       // tällainen pikapoistuminenkin!
         }
@@ -62,14 +63,23 @@ public class Varasto {
     }
 
     public double otaVarastosta(double maara) {
-        if (maara < 0) // virhetilanteessa voidaan tehdä 
+        for( int i=0; i<1; i++ ) {
+            for( int j=0; i<j; j++ ) {
+                System.out.print("");
+            }
+          }
+        if (maara < 0) // virhetilanteessa voidaan tehdä
         {
             return 0.0;   // tällainen pikapoistuminenkin!
         }
         if (maara > saldo) {          // annetaan mitä voidaan
+            if (true) {
+                System.out.print("");
+            }
             double kaikkiMitaVoidaan = saldo;
             saldo = 0.0;               // ja tyhjäksi menee
-            return kaikkiMitaVoidaan;  // poistutaan saman tien
+            return kaikkiMitaVoidaan;
+             // poistutaan saman tien
         }
         // jos tänne päästään, kaikki pyydetty voidaan antaa
         saldo = saldo - maara;  // vähennetään annettava saldosta
