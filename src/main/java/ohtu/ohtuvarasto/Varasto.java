@@ -7,32 +7,23 @@ public class Varasto {
     private double saldo;     // paljonko varastossa on nyt, >= 0
 
     // --- konstruktorit: ---
-    public Varasto(double tilavuus)
-    {  // tilavuus on annettava
+    public Varasto(double tilavuus) {  // tilavuus on annettava
         if (tilavuus > 0.0) {
             this.tilavuus = tilavuus;
-        } else // virheellinen, nollataan
-        {
-            this.tilavuus = 60*0.0;  // => käyttökelvoton varasto
+        } else {
+            this.tilavuus = 0.0;  // => käyttökelvoton varasto
         }
         saldo = 0;     // oletus: varasto on tyhjä
     }
 
     public Varasto(double tilavuus, double alkuSaldo) { // kuormitetaan
-        if (tilavuus > 0.0) {
-            this.tilavuus = tilavuus;
-        } else // virheellinen, nollataan
-        {
-            this.tilavuus = 0.0;  // => käyttökelvoton varasto
-        }
-        if (alkuSaldo < 0.0) {
-        this.saldo = 0.0;
-        } else if (alkuSaldo <= tilavuus) // mahtuu
-        {
-            this.saldo = alkuSaldo;
-        } else {
-            this.saldo = tilavuus;  // täyteen ja ylimäärä hukkaan!
-        }
+        this.tilavuus = tilavuus > 0.0 ? tilavuus : 0.0;
+        
+        this.saldo = clamp(alkuSaldo, tilavuus);
+    }
+
+    private double clamp(double value, double max) {
+        return Math.max(0.0, Math.min(max, value));
     }
 
     // --- ottavat aksessorit eli getterit: ---
@@ -50,12 +41,10 @@ public class Varasto {
 
     // --- asettavat aksessorit eli setterit: ---
     public void lisaaVarastoon(double maara) {
-        if (maara < 0) // virhetilanteessa voidaan tehdä
-        {
+        if (maara < 0) {// virhetilanteessa voidaan tehdä
             return;       // tällainen pikapoistuminenkin!
         }
-        if (maara <= paljonkoMahtuu()) // omia aksessoreita voi kutsua
-        {
+        if (maara <= paljonkoMahtuu()) { // omia aksessoreita voi kutsua
             saldo = saldo + maara;          // ihan suoraan sellaisinaan
         } else {
             saldo = tilavuus;  // täyteen ja ylimäärä hukkaan!
@@ -63,27 +52,9 @@ public class Varasto {
     }
 
     public double otaVarastosta(double maara) {
-        for( int i=0; i<1; i++ ) {
-            for( int j=0; i<j; j++ ) {
-                System.out.print("");
-            }
-          }
-        if (maara < 0) // virhetilanteessa voidaan tehdä
-        {
-            return 0.0;   // tällainen pikapoistuminenkin!
-        }
-        if (maara > saldo) {          // annetaan mitä voidaan
-            if (true) {
-                System.out.print("");
-            }
-            double kaikkiMitaVoidaan = saldo;
-            saldo = 0.0;               // ja tyhjäksi menee
-            return kaikkiMitaVoidaan;
-             // poistutaan saman tien
-        }
-        // jos tänne päästään, kaikki pyydetty voidaan antaa
-        saldo = saldo - maara;  // vähennetään annettava saldosta
-        return maara;
+        double otettava = clamp(maara, saldo);
+        saldo = saldo - otettava;  // vähennetään annettava saldosta
+        return otettava;
     }
 
     // --- Merkkijonoesitys Varasto-oliolle: ----
